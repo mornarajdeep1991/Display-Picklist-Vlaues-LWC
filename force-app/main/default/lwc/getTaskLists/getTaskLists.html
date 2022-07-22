@@ -1,0 +1,18 @@
+<template>
+    <lightning-combobox
+        name="My Records"
+        label="MY Records"
+        value={chosenValue}
+        onchange={handleChange}
+        options={recordOptions}>
+        </lightning-combobox>
+        <p>Selected value is: {chosenValue}</p>
+
+        <!--<template>
+    <template for:each = {items} for:item="listViewItem">
+        <select key={listViewItem.key}>
+        <option value={listViewItem.key}>{listViewItem.groupnames}</option>
+    </select>
+     </template>
+</template>-->
+</template>
