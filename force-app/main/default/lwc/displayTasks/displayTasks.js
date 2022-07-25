@@ -40,15 +40,6 @@ dWrap.owner=itm.Owner.Name;
 dataWrapList.push(dWrap);
 });
 this.dataWrapperList = dataWrapList;
-/*for(let i=0; i<data.length; i++)  {
-console.log('i==='+i);
-console.log('datai==='+data[i].Subject);
-console.log('i owner==='+data[i].Owner.Name);
-
-this.data1.push({ id: i+1, subject: data[i].Subject, owner: data[i].Owner.Name });
-                                
-} 
-this.updateditems = this.data1;  */
 console.log('updated=='+JSON.stringify(this.dataWrapperList));
 
 }else{
