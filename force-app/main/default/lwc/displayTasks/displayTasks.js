@@ -17,7 +17,7 @@ export default class DisplayTasks extends LightningElement {
     {
         label: 'Due Date',
         fieldName: 'ActivityDate',
-        type: 'DateTime',
+        type: 'date',
         sortable: true
     },
     { label: 'Owner', fieldName: 'owner', type: 'text',sortable: false}
@@ -52,7 +52,6 @@ this.updateditems = this.data1;  */
 console.log('updated=='+JSON.stringify(this.dataWrapperList));
 
 }else{
-
 console.log(error);
 
 }
