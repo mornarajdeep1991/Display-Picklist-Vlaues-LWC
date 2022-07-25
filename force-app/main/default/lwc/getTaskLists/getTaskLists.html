@@ -1,13 +1,13 @@
 <template>
     <div style="height:25px; margin:20px; margin-bottom:150px;">
     <lightning-card title="SELECT LIST VIEW" aura:id="tsklst" class="slds-table_header-fixed_container slds-scrollable_x slds-border_top">
-<lightning-combobox
+<lightning-combobox style="height:5px; margin:10px; margin-bottom:150px;"
     value={chosenValue}
     onchange={handleChange}
     options={recordOptions}>
     </lightning-combobox>
     <!--<p>Selected value is: {chosenValue}</p>-->
-<c-display-Tasks task-owner-name={chosenValue}></c-display-Tasks>
 </lightning-card>
 </div>
+<c-display-Tasks task-owner-name={chosenValue}></c-display-Tasks>
 </template>
