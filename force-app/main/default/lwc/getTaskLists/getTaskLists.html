@@ -1,10 +1,13 @@
 <template>
+    <lightning-card>
 <lightning-combobox
-    name="Select Task List View"
-    label="Select Task List View"
+    name="Select Task List"
+    label="Select Task List"
     value={chosenValue}
     onchange={handleChange}
     options={recordOptions}>
     </lightning-combobox>
     <p>Selected value is: {chosenValue}</p>
+</lightning-card>
+<c-display-Tasks task-owner-name={chosenValue}></c-display-Tasks>
 </template>

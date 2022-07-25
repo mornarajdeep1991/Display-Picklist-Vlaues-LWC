@@ -1,10 +1,10 @@
-import { LightningElement,wire,track} from 'lwc';
+import { LightningElement,wire,track,api} from 'lwc';
 import gettaskliststodisplay from '@salesforce/apex/DisplayTasksController.gettaskliststodisplay';
 
 export default class getTaskLists extends LightningElement {
 @track items = []; //this will hold key, value pair
 @track value = ''; //initialize combo box value
-@track chosenValue = '';
+@api chosenValue = '';
 @track updateditems;
 @wire(gettaskliststodisplay)
 wiredRecords({ error, data }) {
@@ -39,6 +39,7 @@ return this.updateditems;
 const selectedOption = event.detail.value;
 
 this.chosenValue = selectedOption;
+this.toChild = selectedOption;
 }
 
 //this value will be shown as selected value of combobox item
