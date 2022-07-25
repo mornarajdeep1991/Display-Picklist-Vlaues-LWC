@@ -2,9 +2,10 @@ import { api, LightningElement, wire, track } from 'lwc';
 
 import displaytasks from '@salesforce/apex/DisplayTasksController.displaytasks';
 export default class DisplayTasks extends LightningElement {
-@track dataWrapperList;
-@api taskOwnerName;
-@track updateditems;
+@track dataWrapperList
+@api taskOwnerName
+@track updateditems
+@track booleanVal
 @track columns = [
     { label: 'Task Name', fieldName: 'tksubject',type:'url',sortable: true,typeAttributes: {label: { fieldName: 'subject' }, target: '_blank'} },
     {
@@ -22,12 +23,12 @@ export default class DisplayTasks extends LightningElement {
     },
     { label: 'Owner', fieldName: 'owner', type: 'text',sortable: false}
 ];
-@track data;
+
+
 @wire(displaytasks,{ownerValue: '$taskOwnerName'})
 wiredRecords({ error, data }) {
 
 if(data){
-console.log('data======'+JSON.stringify(data));
 let dataWrapList = [];
 let i=0;
 data.forEach(itm => {
@@ -39,17 +40,17 @@ dWrap.ActivityDate=itm.ActivityDate;
 dWrap.owner=itm.Owner.Name;
 dataWrapList.push(dWrap);
 });
-this.dataWrapperList = dataWrapList;
-console.log('updated=='+JSON.stringify(this.dataWrapperList));
-
+if(dataWrapList.length >0){
+    this.booleanVal = true;
 }else{
-console.log(error);
-
+    this.booleanVal = false;
 }
-
-
+this.dataWrapperList = dataWrapList;
+}else{
+console.log('Exception==='+error);
 }
-    data=this.dataWrapperList;
+}
+data=this.dataWrapperList;
 defaultSortDirection = 'asc';
 sortDirection = 'asc';
 sortedBy;
@@ -74,7 +75,10 @@ const { fieldName: sortedBy, sortDirection } = event.detail;
 const cloneData = [...this.dataWrapperList];
 
 cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
+console.log('this.cloneData=='+JSON.stringify(cloneData));
 this.dataWrapperList = cloneData;
+
+console.log('this.dataWrapperList=='+JSON.stringify(this.dataWrapperList));
 this.sortDirection = sortDirection;
 this.sortedBy = sortedBy;
 }

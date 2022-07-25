@@ -1,6 +1,6 @@
 <template>
     <div style="height:5px; margin:20px; margin-bottom:150px;">
-<template if:true={dataWrapperList}>
+<template if:true={booleanVal}>
 <lightning-card title="TASK RECORDS">
 
 <lightning-datatable aura:id="accTable" class="slds-table_header-fixed_container slds-scrollable_x slds-border_top"
@@ -15,7 +15,7 @@
 </lightning-datatable>
 </lightning-card>
 </template>
-<template if:false={dataWrapperList}>
+<template if:false={booleanVal}>
 <lightning-card>
 <h2 class="slds-text-heading_small"><strong style="color:#270086;text-align:center;">No Open Tasks Found</strong></h2>
 </lightning-card>

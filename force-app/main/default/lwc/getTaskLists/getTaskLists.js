@@ -2,10 +2,10 @@ import { LightningElement,wire,track,api} from 'lwc';
 import gettaskliststodisplay from '@salesforce/apex/DisplayTasksController.gettaskliststodisplay';
 
 export default class getTaskLists extends LightningElement {
-@track items = []; //this will hold key, value pair
-@track value = ''; //initialize combo box value
-@api chosenValue = '';
-@track updateditems;
+@track items = [] //this will hold key, value pair
+@track value = '' //initialize combo box value
+@api chosenValue = ''
+@track updateditems
 @wire(gettaskliststodisplay)
 wiredRecords({ error, data }) {
 
