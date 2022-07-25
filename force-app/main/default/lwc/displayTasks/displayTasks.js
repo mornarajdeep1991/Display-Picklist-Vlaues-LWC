@@ -6,7 +6,7 @@ export default class DisplayTasks extends LightningElement {
 @api taskOwnerName;
 @track updateditems;
 @track columns = [
-    { label: 'Task Name', fieldName: 'tksubject',type:'url',typeAttributes: {label: { fieldName: 'subject' }, target: '_blank'} },
+    { label: 'Task Name', fieldName: 'tksubject',type:'url',sortable: true,typeAttributes: {label: { fieldName: 'subject' }, target: '_blank'} },
     {
         label: 'Description',
         fieldName: 'Description',
@@ -14,7 +14,13 @@ export default class DisplayTasks extends LightningElement {
         sortable: true,
         cellAttributes: { alignment: 'left' },
     },
-    { label: 'Owner', fieldName: 'owner', type: 'text' }
+    {
+        label: 'Due Date',
+        fieldName: 'ActivityDate',
+        type: 'DateTime',
+        sortable: true
+    },
+    { label: 'Owner', fieldName: 'owner', type: 'text',sortable: false}
 ];
 @track data;
 @wire(displaytasks,{ownerValue: '$taskOwnerName'})
@@ -29,6 +35,7 @@ let dWrap = {};
 dWrap.subject=itm.Subject;
 dWrap.tksubject='/'+itm.Id;
 dWrap.Description=itm.Description;
+dWrap.ActivityDate=itm.ActivityDate;
 dWrap.owner=itm.Owner.Name;
 dataWrapList.push(dWrap);
 });
