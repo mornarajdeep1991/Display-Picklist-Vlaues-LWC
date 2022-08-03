@@ -1,0 +1,33 @@
+public class DisplayTasksController {
+
+   @AuraEnabled(cacheable=true)
+    public static List<Task> displaytasks(String ownerValue){
+        system.debug('ownerValue=='+ownerValue);
+        List<Task> taskLst = [select Id,Owner.Name,Subject,Description,ActivityDate,CreatedDate from Task WHERE Status !='Completed' AND Owner.Name=:ownerValue];
+        system.debug('taskLst=='+taskLst);
+        return taskLst;
+    }
+    
+    @AuraEnabled(cacheable=true)
+    public static List<returnvalues> gettaskliststodisplay(){
+        List<String> pbgrp=new List<String>();
+       List<Group> grpLst =[select Name from Group WHERE Group.Type = 'Regular'];
+        if(!grpLst.isEmpty()){
+            
+            List<returnvalues> rvLst = new List<returnvalues>();
+             for(Group grp : grpLst){
+           returnvalues rv = new returnvalues();
+            rv.groupnames =grp.Name;
+             rvLst.add(rv);   
+        }
+            return rvLst;
+        }
+       
+       system.debug('called  pbgrp'+pbgrp);
+     return null;
+    }
+      public class returnvalues{
+        
+         @AuraEnabled public string groupnames;
+    }
+}
